@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#070a14" />
+<meta name="description" content="AeroSense — real-time weather, air quality and climate intelligence for healthier living and smarter farming. Powered by Open-Meteo." />
+<title>AeroSense · Weather, Air Quality & Climate Intelligence</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffb454'/%3E%3Cstop offset='1' stop-color='%23ff7a59'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Cpath d='M11 24A6 6 0 0 1 10 12c4.9-1 6.2-1.4 7.9-3.5.9 1.7 1.8 3.6 1.8 6.9 0 4.7-4.1 8.6-8.7 8.6Z' fill='%230b1220'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-theme="clear-day">
+
+<!-- ================= AMBIENT BACKGROUND ================= -->
+<div class="ambient" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+  <span class="vignette"></span>
+</div>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar" id="sidebar" aria-label="Main navigation">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+              fill="currentColor" opacity=".95"/>
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+              stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <p class="brand-name">AeroSense</p>
+      <p class="brand-sub">Climate Intelligence</p>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <p class="nav-label">Workspace</p>
+
+    <a class="nav-link is-active" href="#dashboard">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.8"/>
+        <rect x="14" y="14" width="7" height="7" rx="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.8"/>
+      </svg>
+      <span>Dashboard</span>
+    </a>
+
+    <a class="nav-link" href="#air">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8h11a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h8"/>
+      </svg>
+      <span>Air Quality</span>
+    </a>
+
+    <a class="nav-link" href="#forecast">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 17l5-5 4 3 8-9"/><path d="M3 21h18"/>
+      </svg>
+      <span>Forecast</span>
+    </a>
+
+    <a class="nav-link" href="#insights">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/><path d="M9.5 21h5"/>
+      </svg>
+      <span>Insights</span>
+    </a>
+
+    <p class="nav-label nav-label--gap">More</p>
+
+    <a class="nav-link" href="#share">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.6"/><path d="M14 14h3v3h-3zM21 14v3M14 21h3M21 21h.01"/>
+      </svg>
+      <span>Share</span>
+    </a>
+
+    <a class="nav-link" href="#team">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <span>Team</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-card">
+    <p class="sidebar-card-title">Scan to open</p>
+    <div class="qr-box qr-box--sm" id="qrSidebar"></div>
+    <p class="sidebar-card-url" id="shareUrlSidebar">loading…</p>
+  </div>
+
+  <div class="sidebar-footer">
+    <span class="live-dot"></span>
+    <span>Live data · Open-Meteo</span>
+  </div>
+</aside>
+
+<div class="scrim" id="scrim"></div>
+
+<!-- ================= MAIN ================= -->
+<main class="main">
+  <div class="wrap">
+
+    <!-- ---------- TOPBAR ---------- -->
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+
+      <div class="search-wrap">
+        <form class="search" id="searchForm" role="search" autocomplete="off">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/>
+          </svg>
+          <input id="cityInput" type="text" placeholder="Search any city — Bandung, Tokyo, London…"
+                 aria-label="Search city" spellcheck="false" />
+          <button type="submit" class="search-btn" id="searchBtn">Search</button>
+        </form>
+        <div class="suggestions" id="suggestions" hidden></div>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="geoBtn" title="Use my location" aria-label="Use my location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.2"/>
+            <path d="M12 1v3M12 20v3M1 12h3M20 12h3"/>
+          </svg>
+        </button>
+
+        <div class="unit-toggle" role="group" aria-label="Temperature unit">
+          <button class="unit is-active" data-unit="c" type="button">°C</button>
+          <button class="unit" data-unit="f" type="button">°F</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ---------- DASHBOARD ---------- -->
+    <section class="section" id="dashboard">
+
+      <div class="hero glass">
+        <div class="hero-info">
+          <div class="hero-head">
+            <div>
+              <p class="eyebrow" id="heroDate">Connecting…</p>
+              <h1 class="city-name" id="cityName">AeroSense</h1>
+              <p class="city-sub" id="citySub">Search a city to begin</p>
+            </div>
+            <span class="pill" id="conditionPill">—</span>
+          </div>
+
+          <div class="temp-block">
+            <span class="temp" id="tempValue">--</span>
+            <span class="temp-deg" id="tempUnit">°C</span>
+          </div>
+          <p class="feels" id="feelsLike">Feels like —</p>
+
+          <div class="hero-meta">
+            <div class="meta"><span class="meta-label">High / Low</span><span class="meta-value" id="heroHighLow">—</span></div>
+            <div class="meta"><span class="meta-label">Sunrise</span><span class="meta-value" id="heroSunrise">—</span></div>
+            <div class="meta"><span class="meta-label">Sunset</span><span class="meta-value" id="heroSunset">—</span></div>
+            <div class="meta"><span class="meta-label">Wind</span><span class="meta-value" id="heroWind">—</span></div>
+          </div>
+        </div>
+
+        <div class="hero-art" id="heroArt" aria-hidden="true"></div>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat glass">
+          <span class="stat-icon" data-icon="drop"></span>
+          <span class="stat-label">Humidity</span>
+          <span class="stat-value" id="statHumidity">—</span>
+          <span class="stat-foot" id="statHumidityNote">—</span>
+        </article>
+
+        <article class="stat glass">
+          <span class="stat-icon" data-icon="wind"></span>
+          <span class="stat-label">Wind speed</span>
+          <span class="stat-value" id="statWind">—</span>
+          <span class="stat-foot" id="statWindNote">—</span>
+        </article>
+
+        <article class="stat glass">
+          <span class="stat-icon" data-icon="gauge"></span>
+          <span class="stat-label">Pressure</span>
+          <span class="stat-value" id="statPressure">—</span>
+          <span class="stat-foot" id="statPressureNote">—</span>
+        </article>
+
+        <article class="stat glass">
+          <span class="stat-icon" data-icon="drop"></span>
+          <span class="stat-label">Precipitation</span>
+          <span class="stat-value" id="statPrecip">—</span>
+          <span class="stat-foot" id="statPrecipNote">—</span>
+        </article>
+
+        <article class="stat glass">
+          <span class="stat-icon" data-icon="cloud"></span>
+          <span class="stat-label">Cloud cover</span>
+          <span class="stat-value" id="statCloud">—</span>
+          <span class="stat-foot" id="statCloudNote">—</span>
+        </article>
+
+        <article class="stat glass">
+          <span class="stat-icon" data-icon="sun"></span>
+          <span class="stat-label">UV index</span>
+          <span class="stat-value" id="statUv">—</span>
+          <span class="stat-foot" id="statUvNote">—</span>
+        </article>
+      </div>
+
+      <div class="summary glass">
+        <span class="summary-icon" data-icon="spark"></span>
+        <p id="summaryText">Waiting for the first city…</p>
+      </div>
+    </section>
+
+    <!-- ---------- AIR QUALITY ---------- -->
+    <section class="section" id="air">
+      <header class="section-head">
+        <p class="eyebrow">Air Quality</p>
+        <h2>What you're breathing right now</h2>
+        <p class="section-desc">Live PM2.5, PM10 and gaseous pollutant readings modelled by Open-Meteo's
+          CAMS-based air-quality service.</p>
+      </header>
+
+      <div class="air-grid">
+        <div class="glass aqi-card">
+          <div class="aqi-ring" id="aqiRing" style="--pct:0;--aqi:#3ddc97">
+            <div class="aqi-ring-inner">
+              <span class="aqi-value" id="aqiValue">—</span>
+              <span class="aqi-caption">US AQI</span>
+            </div>
+          </div>
+          <p class="aqi-label" id="aqiLabel">Awaiting data</p>
+          <p class="aqi-hint" id="aqiHint">Search a city to load its air-quality index.</p>
+        </div>
+
+        <div class="glass pollutant-card">
+          <h3 class="card-title">Pollutant breakdown</h3>
+          <div class="pollutants" id="pollutants">
+            <p class="empty-note">No measurements yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- FORECAST ---------- -->
+    <section class="section" id="forecast">
+      <header class="section-head">
+        <p class="eyebrow">Forecast</p>
+        <h2>The hours and days ahead</h2>
+        <p class="section-desc">Hour-by-hour conditions for the next 24 hours, plus a seven-day outlook
+          with precipitation probability.</p>
+      </header>
+
+      <div class="glass panel">
+        <h3 class="card-title">Next 24 hours</h3>
+        <div class="hourly" id="hourly">
+          <p class="empty-note">No forecast loaded.</p>
+        </div>
+      </div>
+
+      <div class="glass panel panel--spaced">
+        <h3 class="card-title">7-day outlook</h3>
+        <div class="daily" id="daily">
+          <p class="empty-note">No forecast loaded.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- INSIGHTS ---------- -->
+    <section class="section" id="insights">
+      <header class="section-head">
+        <p class="eyebrow">Insights</p>
+        <h2>Recommendations that actually matter</h2>
+        <p class="section-desc">Rules derived from live readings — one set for human health, one for
+          precision-agriculture field operations.</p>
+      </header>
+
+      <div class="insight-grid">
+        <article class="glass insight-card">
+          <div class="insight-head">
+            <span class="insight-badge badge-health" data-icon="heart"></span>
+            <div>
+              <h3>Health &amp; Wellbeing</h3>
+              <p>Personal exposure guidance</p>
+            </div>
+          </div>
+          <ul class="tip-list" id="healthTips">
+            <li class="empty-note">Search a city to generate health guidance.</li>
+          </ul>
+        </article>
+
+        <article class="glass insight-card">
+          <div class="insight-head">
+            <span class="insight-badge badge-agri" data-icon="sprout"></span>
+            <div>
+              <h3>Precision Agriculture</h3>
+              <p>Field operations window</p>
+            </div>
+          </div>
+          <ul class="tip-list" id="agriTips">
+            <li class="empty-note">Search a city to generate farming guidance.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ---------- SHARE ---------- -->
+    <section class="section" id="share">
+      <div class="glass share-card">
+        <div class="share-info">
+          <p class="eyebrow">Share</p>
+          <h2>Scan to open AeroSense</h2>
+          <p class="share-desc">Point your phone camera at the code to open this exact page on any
+            device — no app store, no install, no database.</p>
+
+          <div class="share-url">
+            <code id="shareUrlText">loading…</code>
+            <button class="btn-ghost" id="copyBtn" type="button">Copy</button>
+          </div>
+        </div>
+
+        <div class="qr-frame">
+          <div class="qr-box" id="qrMain"></div>
+          <p class="qr-caption">Scan me</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- TEAM ---------- -->
+    <section class="section" id="team">
+      <header class="section-head">
+        <p class="eyebrow">The Team</p>
+        <h2>Built by</h2>
+        <p class="section-desc">Informatics × Entrepreneurship (PKWU) project team.</p>
+      </header>
+
+      <div class="team-grid">
+        <article class="glass team-card">
+          <div class="avatar" style="--a:#ffb454;--b:#ff7a59">MF</div>
+          <h3 class="team-name">Muhammad Fathan N.A.</h3>
+          <span class="team-no">24</span>
+        </article>
+
+        <article class="glass team-card">
+          <div class="avatar" style="--a:#6ea8ff;--b:#a78bfa">NK</div>
+          <h3 class="team-name">Nayla Khaira W.P</h3>
+          <span class="team-no">28</span>
+        </article>
+
+        <article class="glass team-card">
+          <div class="avatar" style="--a:#3ddc97;--b:#31c1ff">NM</div>
+          <h3 class="team-name">Nayla Maritza Sasmita</h3>
+          <span class="team-no">29</span>
+        </article>
+
+        <article class="glass team-card">
+          <div class="avatar" style="--a:#ff7ab6;--b:#ff9f43">NS</div>
+          <h3 class="team-name">Netta Safira Nur F.</h3>
+          <span class="team-no">30</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ---------- FOOTER ---------- -->
+    <footer class="footer">
+      <div class="footer-left">
+        <span class="live-dot"></span>
+        <span>Live weather &amp; air-quality data by <strong>Open-Meteo</strong> — free, open, no API key.</span>
+      </div>
+      <div class="footer-right">© <span id="year">2025</span> AeroSense · Informatics × PKWU</div>
+    </footer>
+
+  </div>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+  <div style="position:fixed;inset:0;display:grid;place-items:center;background:#070a14;color:#fff;
+              font-family:system-ui;padding:24px;text-align:center;z-index:999">
+    AeroSense needs JavaScript enabled to fetch live weather and air-quality data.
+  </div>
+</noscript>
+
+<!-- QR generator (browser build) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
